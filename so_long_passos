@@ -1,0 +1,54 @@
+SO_LONG
+
+1- Avaliar possiveis limites e erros:
+	a) o mapa precisa ser um retangulo
+	b) o arquivo do mapa precisa ser .ber
+	c) o programa precisa receber um parametro apenas
+	d) o jogador nao pode passar pela parede (1)
+	e) precisa ter apenas um jogador
+	f) precisa existir apenas uma saida
+	g) precisa existir um coletavel ao menos
+	h) precisa printar quantidade de movimentos no terminal
+	i) a tela precisa fechar com esc e X da janela
+	j) no mapa pode haver apenas P, 0, 1, C e E
+	k) o mapa precisa ser cercado por paredes 1
+
+2- criar um strcut com todas as infos do jogo
+
+3- inicializar esse struct
+
+4- criar uma funçao que limpe seu struct, sempre checando se o elemento a ser limpo
+existe, criar tambem uma funçao de erro que de exit(EXIT_FAILUR)
+
+5- checar se o mapa esta dentro da limitaçoe
+
+6- carregar as texturas
+
+7- criar as imagens
+
+8- movimentar seu jogador
+
+9- RENDERIZAR O MAPA INTEIRO SO COM A TEXTURA DO CHAO PRIMEIRO!!!!!!!!!!
+
+10- RENDERIZAR os coletaveis a parede e a saida
+
+STRUCT:
+
+game:	janela -> mlx_t
+		width -> int
+		height -> int
+		texturas -> mlx_texture_t
+		imagem -> mlx_image_t
+		movimento -> int
+		game_over -> over
+		**mapa -> char
+		player_position -> t_position
+
+t_position
+	x -> int
+	y -> int
+
+
+
+
+

@@ -1,0 +1,142 @@
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include "../mlx_42/include/MLX42/MLX42.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include "../libft/libft.h"
+# include "../printf/ft_printf.h"
+
+# define SIZE_WIN 64
+
+# define MAP_EXTENSION ".ber"
+
+# define IMG_SIZE 32
+
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
+
+typedef struct s_position
+{
+	int	x;
+	int	y;
+}	t_position;
+
+typedef struct s_game
+{
+	char			**map;
+	int				map_width;
+	int				map_height;
+	int				moves;
+	t_position		player;
+	mlx_image_t		img;
+	mlx_texture_t	texture;
+	mlx_t			*mlx;
+}	t_game;
+
+int		handle_error(const char *msg);
+void	critical_error(const char *msg, t_game *game);
+void	init_game(t_game *game, char *map_path);
+void	print_map(t_game **game);
+
+#endif
+
+
+#include "../includes/so_long.h"
+
+int	main(int ac, char **av)
+{
+	t_game	*game;
+
+	if (ac != 2)
+	{
+		ft_printf("Usage: %s <map_file>\n", av[0]);
+		return (1);
+	}
+	init_game(&game, av[1]);
+	print_map(&game);
+	return (0);
+}
+
+#include "../includes/so_long.h"
+
+char	**read_map(t_game *game, char *map_path)
+{
+	char	**matrix;
+	int		fd;
+	int		i;
+	int		len;
+
+	i = 0;
+	len = 0;
+	fd = open(map_path, O_RDONLY);
+	if (fd < 0)
+	{
+		handle_error("ERROR, Invalid map path");
+		return (NULL);
+	}
+	matrix = (char **)ft_calloc(SIZE_WIN, sizeof(char *));
+	if (!matrix)
+	{
+		handle_error("ERROR, Memory allocation failed");
+		return (NULL);
+	}
+	while (i < SIZE_WIN)
+	{
+		matrix[i] = get_next_line(fd);
+		if (!matrix[i])
+			break ;
+		len = ft_strlen(matrix[i]);
+		game->map_width = len;
+		i++;
+	}
+	ft_printf("%d\n", len);
+	close(fd);
+	return (matrix);
+}
+
+void init_game(t_game *game, char *map_path)
+{
+	// t_position position;
+
+	game->map = NULL;
+	game->map_width = 0;
+	game->map_height = 0;
+	game->moves = 0;
+	if (!read_map(game, map_path))
+		critical_error("ERROR, Invalid map", game);
+}
+
+void	print_map(t_game **game)
+{
+	int i;
+
+	i = 0;
+	while ((*game)->map[i])
+	{
+		ft_printf("%s\n", (*game)->map[i]);
+		i++;
+	}
+}
+
+int	handle_error(const char *msg)
+{
+	if (!msg)
+		msg = "ERROR, Unknown error";
+	ft_printf("%s\n", msg);
+	return (0);
+}
+
+void	critical_error(const char *msg, t_game *game)
+{
+	(void)game;
+	if (!msg)
+		msg = "ERROR, Unknown critical error";
+	ft_printf("%s\n", msg);
+	// destroy_game(game);
+	exit(EXIT_FAILURE);
+}
