@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "chat": "cpp",
+        "so_long.h": "c",
+        "mlx42.h": "c",
+        "libft.h": "c"
+    }
+}

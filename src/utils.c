@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 19:49:16 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 15:39:24 by cbrito-s         ###   ########.fr       */
+/*   Created: 2025/03/13 13:35:20 by cbrito-s          #+#    #+#             */
+/*   Updated: 2025/03/13 13:58:35 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int32_t	main(int ac, char **av)
+int count_itens(t_game *game, char c)
 {
-	t_game	*game;
+    int i;
+    int j;
+    int count;
 
-	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		return (handle_error("Memory allocation failed"));
-	if (ac != 2)
-	{
-		free(game);
-		critical_error("ERROR: wrong number of arguments", NULL);
-	}
-	init_game(game, av[1]);
-	init_mlx(game);
-	load_resources(game);
-	render_map(game);
-	mlx_loop(game->mlx);
+    i = 0;
+    count = 0;
+    while (i < game->map_height)
+    {
+        j = 0;
+        while (j < game->map_width)
+        {
+            if (game->map[i][j] == c)
+                count++;
+            j++;
+        }
+        i++;
+    }
+    return (count);
 }

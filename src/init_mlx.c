@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 22:30:39 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/12 22:36:29 by cbrito-s         ###   ########.fr       */
+/*   Created: 2025/03/13 14:04:14 by cbrito-s          #+#    #+#             */
+/*   Updated: 2025/03/13 15:04:27 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	read_map(t_game *game, char *file)
+void init_mlx(t_game *game)
 {
-	int		fd;
-	char	*map;
-	char	*line;
+    int map_width;
+    int map_height;
 
-	fd = open(file, O_RDONLY);
-	map = ft_strdup("");
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		map = ft_strjoin(map, line);
-		map = ft_strjoin(map, "\n");
-		free(line);
-	}
-	game->map = ft_split(map, '\n');
-	free(map);
-	close(fd);
+    map_width = game->map_width * SIZE_WIN;
+    map_height = game->map_height * SIZE_WIN;
+    game->mlx = mlx_init(map_width, map_height, "so_long", false);
+    if (!game->mlx)
+        critical_error("ERROR: mlx_init failed", game);
 }

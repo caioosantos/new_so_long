@@ -3,8 +3,8 @@ NAME = so_long
 # directories
 SRC_DIR = src/
 INCLUDE_DIR = includes/
-MLX_DIR = mlx_42/
-LIBFT_DIR = libft/
+MLX_DIR = lib/mlx_42/
+LIBFT_DIR = lib/libft/
 PRINTF_DIR = printf/
 OBJ_DIR = obj/
 

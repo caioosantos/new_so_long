@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clean_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 19:49:16 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 15:39:24 by cbrito-s         ###   ########.fr       */
+/*   Created: 2025/03/13 10:50:33 by cbrito-s          #+#    #+#             */
+/*   Updated: 2025/03/13 11:07:04 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int32_t	main(int ac, char **av)
+static void free_map(t_game *game)
 {
-	t_game	*game;
+    int i;
 
-	game = ft_calloc(1, sizeof(t_game));
-	if (!game)
-		return (handle_error("Memory allocation failed"));
-	if (ac != 2)
-	{
-		free(game);
-		critical_error("ERROR: wrong number of arguments", NULL);
-	}
-	init_game(game, av[1]);
-	init_mlx(game);
-	load_resources(game);
-	render_map(game);
-	mlx_loop(game->mlx);
+    i = 0;
+    while (i < game->map_height)
+    {
+        free(game->map[i]);
+        i++;
+    }
+    free(game->map);
+}
+
+void destroy_game(t_game *game)
+{
+    if (!game)
+        return;
+    free_map(game);
 }
