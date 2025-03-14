@@ -6,11 +6,34 @@
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:02:47 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 14:40:54 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:43:46 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static void	find_player(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->map_height)
+	{
+		j = 0;
+		while (j < game->map_width)
+		{
+			if (game->map[i][j] == 'P')
+			{
+				game->player.x = j;
+				game->player.y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 void	init_images(t_game *game)
 {
@@ -33,8 +56,8 @@ void	init_textures(t_game *game)
 void	init_game(t_game *game, const char *path)
 {
 	game->map = NULL;
-	game->map_width = 15;
-	game->map_height = 10;
+	game->map_width = 0;
+	game->map_height = 0;
 	game->moves = 0;
 	game->player.x = 0;
 	game->player.y = 0;
@@ -43,6 +66,7 @@ void	init_game(t_game *game, const char *path)
 	init_images(game);
 	init_textures(game);
 	read_map(game, path);
+	find_player(game);
 	validate_map(game, path);
 }
 
@@ -51,6 +75,7 @@ void	read_map(t_game *game, const char *file)
 	int		fd;
 	char	*map;
 	char	*line;
+	int		len;
 
 	fd = open(file, O_RDONLY);
 	map = ft_strdup("");
@@ -59,7 +84,14 @@ void	read_map(t_game *game, const char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break;
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
+		game->map_height++;
+		if (game->map_width < (int)ft_strlen(line))
+			game->map_width = ft_strlen(line);
 		map = ft_strjoin(map, line);
+		map = ft_strjoin(map, "\n");
 		free(line);
 	}
 	game->map = ft_split(map, '\n');

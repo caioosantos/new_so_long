@@ -6,31 +6,32 @@
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:42:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 15:42:33 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:43:50 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
-#include "../lib/mlx_42/include/MLX42/MLX42.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "../lib/libft/libft.h"
-#include "../printf/ft_printf.h"
+# include "../lib/mlx_42/include/MLX42/MLX42.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include "../lib/libft/libft.h"
+# include "../printf/ft_printf.h"
 
-#define SIZE_WIN 64
+# define SIZE_WIN 64
+# define MAP_EXTENSION ".ber"
 
-#define MAP_EXTENSION ".ber"
-
-#define IMG_SIZE 32
-
-#define KEY_W 119
-#define KEY_A 97
-#define KEY_S 115
-#define KEY_D 100
-#define KEY_ESC 65307
+# define W MLX_KEY_W
+# define A MLX_KEY_A
+# define S MLX_KEY_S
+# define D MLX_KEY_D
+# define UP MLX_KEY_UP
+# define DOWN MLX_KEY_DOWN
+# define LEFT MLX_KEY_LEFT
+# define RIGHT MLX_KEY_RIGHT
+# define ESC MLX_KEY_ESCAPE
 
 typedef struct s_mlx_texture
 {
@@ -86,5 +87,8 @@ void	load_resources(t_game *game);
 
 // render
 void    render_map(t_game *game);
+
+// hook
+void    game_hooks(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:13:16 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 15:37:45 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 20:20:25 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void    load_textures(t_game *game)
     game->texture.t_wall = mlx_load_png("./textures/wall.png");
     game->texture.t_floor = mlx_load_png("./textures/floor.png");
     game->texture.t_exit = mlx_load_png("./textures/exit.png");
-    game->texture.t_collectible = mlx_load_png("./textures/coll.png");
+    game->texture.t_collectible = mlx_load_png("./textures/collectible.png");
     game->texture.t_player = mlx_load_png("./textures/player.png");
     if (!game->texture.t_wall || !game->texture.t_floor || !game->texture.t_exit || !game->texture.t_collectible || !game->texture.t_player)
         critical_error("ERROR: failed to load textures", game);

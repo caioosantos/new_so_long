@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:09:20 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 15:43:02 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 20:20:05 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void render_texture(t_game *game, int i, int j, mlx_image_t *texture)
         ft_printf("ERROR: render_texture failed\n");
         return ;
     }
-    x = i * IMG_SIZE;
-    y = j * IMG_SIZE;
+    x = j * SIZE_WIN;
+    y = i * SIZE_WIN;
     mlx_image_to_window(game->mlx, texture, x, y);
 }
 
@@ -71,6 +71,8 @@ static void render_walls_exit_coll(t_game *game)
 static void render_player(t_game *game)
 {
     mlx_t   *mlx;
+    int     x;
+    int     y;
     
     mlx = game->mlx;
     if (!mlx)
@@ -78,7 +80,9 @@ static void render_player(t_game *game)
         ft_printf("ERROR: render_player failed\n");
         return ;
     }
-    render_texture(game, game->player.x, game->player.y, game->texture.player);
+    x = game->player.x * SIZE_WIN;
+    y = game->player.y * SIZE_WIN;
+    mlx_image_to_window(mlx, game->texture.player, x, y);
     game->img = game->texture.player;
 }
 

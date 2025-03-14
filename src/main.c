@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 19:49:16 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 15:39:24 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:34:32 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int32_t	main(int ac, char **av)
 	init_mlx(game);
 	load_resources(game);
 	render_map(game);
+	game_hooks(game);
 	mlx_loop(game->mlx);
 }
