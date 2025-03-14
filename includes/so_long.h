@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:42:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 21:43:50 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:39:12 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ typedef struct s_game
 int		handle_error(const char *msg);
 void	critical_error(const char *msg, t_game *game);
 
+// clean
+void	destroy_game(t_game *game);
+
 // init
 void	init_game(t_game *game, const char *path);
 void	read_map(t_game *game, const char *file);
@@ -77,6 +80,7 @@ void	read_map(t_game *game, const char *file);
 void	validate_map(t_game *game, const char *file);
 
 // utils
+void	find_player(t_game *game);
 int		count_itens(t_game *game, char c);
 
 // mlx
@@ -86,9 +90,9 @@ void	init_mlx(t_game *game);
 void	load_resources(t_game *game);
 
 // render
-void    render_map(t_game *game);
+void	render_map(t_game *game);
 
 // hook
-void    game_hooks(t_game *game);
+void	key_hook(mlx_key_data_t key_args, void *param);
 
 #endif

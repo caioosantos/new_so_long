@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:02:47 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/13 21:43:46 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:39:01 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-static void	find_player(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->map_height)
-	{
-		j = 0;
-		while (j < game->map_width)
-		{
-			if (game->map[i][j] == 'P')
-			{
-				game->player.x = j;
-				game->player.y = i;
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 void	init_images(t_game *game)
 {
@@ -83,7 +60,7 @@ void	read_map(t_game *game, const char *file)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		len = ft_strlen(line);
 		if (len > 0 && line[len - 1] == '\n')
 			line[len - 1] = '\0';
