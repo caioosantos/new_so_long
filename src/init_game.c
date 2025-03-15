@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:02:47 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/14 18:39:01 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:54:20 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,7 @@ void	init_textures(t_game *game)
 	game->texture.t_player = NULL;
 }
 
-void	init_game(t_game *game, const char *path)
-{
-	game->map = NULL;
-	game->map_width = 0;
-	game->map_height = 0;
-	game->moves = 0;
-	game->player.x = 0;
-	game->player.y = 0;
-	game->img = NULL;
-	game->mlx = NULL;
-	init_images(game);
-	init_textures(game);
-	read_map(game, path);
-	find_player(game);
-	validate_map(game, path);
-}
-
-void	read_map(t_game *game, const char *file)
+static void	read_map(t_game *game, const char *file)
 {
 	int		fd;
 	char	*map;
@@ -74,4 +57,21 @@ void	read_map(t_game *game, const char *file)
 	game->map = ft_split(map, '\n');
 	free(map);
 	close(fd);
+}
+
+void	init_game(t_game *game, const char *path)
+{
+	game->map = NULL;
+	game->map_width = 0;
+	game->map_height = 0;
+	game->moves = 0;
+	game->player.x = 0;
+	game->player.y = 0;
+	game->img = NULL;
+	game->mlx = NULL;
+	init_images(game);
+	init_textures(game);
+	read_map(game, path);
+	find_player(game);
+	validate_map(game, path);
 }

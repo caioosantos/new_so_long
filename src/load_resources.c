@@ -6,13 +6,13 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:13:16 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/14 18:27:56 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/15 17:38:06 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	load_images(t_game *game)
+static void	load_images(t_game *game)
 {
 	game->texture.wall = mlx_texture_to_image(game->mlx, game->texture.t_wall);
 	game->texture.floor = mlx_texture_to_image(game->mlx, \
@@ -26,10 +26,14 @@ void	load_images(t_game *game)
 	if (!game->texture.wall || !game->texture.floor
 		|| !game->texture.exit || !game->texture.collectible
 		|| !game->texture.player)
+	{
+		free_textures(game);
+		free_images(game);
 		critical_error("ERROR: failed to create images", game);
+	}
 }
 
-void	load_textures(t_game *game)
+static void	load_textures(t_game *game)
 {
 	game->texture.t_wall = mlx_load_png("./textures/wall.png");
 	game->texture.t_floor = mlx_load_png("./textures/floor.png");

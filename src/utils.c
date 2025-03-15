@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:20 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/14 18:38:54 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/15 17:17:28 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,26 @@ void	find_player(t_game *game)
 				return ;
 			}
 			j++;
+		}
+		i++;
+	}
+}
+
+void	disable_instance(mlx_image_t *image, int x, int y)
+{
+	size_t	i;
+	int		t_x;
+	int		t_y;
+
+	i = 0;
+	t_x = x * SIZE_WIN;
+	t_y = y * SIZE_WIN;
+	while (i <= image->count)
+	{
+		if (image->instances[i].x == t_x && image->instances[i].y == t_y)
+		{
+			image->instances[i].enabled = false;
+			break ;
 		}
 		i++;
 	}

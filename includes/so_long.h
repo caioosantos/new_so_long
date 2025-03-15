@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:42:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/14 18:39:12 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/15 17:38:36 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ typedef struct s_mlx_texture
 	mlx_texture_t	*t_exit;
 	mlx_texture_t	*t_collectible;
 	mlx_texture_t	*t_player;
-} t_mlx_texture;
+}	t_mlx_texture;
+//Função que some com o coletavel
+
 
 typedef struct s_position
 {
 	int	x;
 	int	y;
-} t_position;
+}	t_position;
 
 typedef struct s_game
 {
@@ -63,7 +65,7 @@ typedef struct s_game
 	t_mlx_texture	texture;
 	mlx_image_t		*img;
 	mlx_t			*mlx;
-} t_game;
+}	t_game;
 
 // erro
 int		handle_error(const char *msg);
@@ -71,10 +73,13 @@ void	critical_error(const char *msg, t_game *game);
 
 // clean
 void	destroy_game(t_game *game);
+void	free_images(t_game *game);
+void	free_textures(t_game *game);
 
 // init
 void	init_game(t_game *game, const char *path);
-void	read_map(t_game *game, const char *file);
+void	init_images(t_game *game);
+void	init_textures(t_game *game);
 
 // validate
 void	validate_map(t_game *game, const char *file);
@@ -82,6 +87,7 @@ void	validate_map(t_game *game, const char *file);
 // utils
 void	find_player(t_game *game);
 int		count_itens(t_game *game, char c);
+void	disable_instance(mlx_image_t *image, int x, int y);
 
 // mlx
 void	init_mlx(t_game *game);
