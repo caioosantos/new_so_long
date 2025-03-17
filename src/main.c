@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 19:49:16 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/14 18:37:04 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/16 22:45:03 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,7 @@ int32_t	main(int ac, char **av)
 	render_map(game);
 	mlx_key_hook(game->mlx, &key_hook, game);
 	mlx_loop(game->mlx);
+	if (game->mlx)
+		destroy_game(game);
+	return (0);
 }

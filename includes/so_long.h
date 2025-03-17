@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:42:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/15 17:38:36 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/16 23:27:26 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 # define RIGHT MLX_KEY_RIGHT
 # define ESC MLX_KEY_ESCAPE
 
+typedef struct s_file
+{
+	int	fd;
+}	t_file;
+
 typedef struct s_mlx_texture
 {
 	mlx_image_t		*wall;
@@ -46,8 +51,6 @@ typedef struct s_mlx_texture
 	mlx_texture_t	*t_collectible;
 	mlx_texture_t	*t_player;
 }	t_mlx_texture;
-//Função que some com o coletavel
-
 
 typedef struct s_position
 {
@@ -65,6 +68,7 @@ typedef struct s_game
 	t_mlx_texture	texture;
 	mlx_image_t		*img;
 	mlx_t			*mlx;
+	t_file			file;
 }	t_game;
 
 // erro

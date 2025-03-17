@@ -35,6 +35,9 @@ $(OBJ_DIRS):
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIRS)
 	$(CC) $(C_FLAGS) -c $< -o $@
 
+$(MLX):
+	@cmake $(MLX_DIR) -B $(MLX_DIR)build && make -C $(MLX_DIR)build -j4
+
 $(NAME): $(OBJ) $(LIBFT) $(PRINTF) $(MLX)
 	$(CC) $(C_FLAGS) -no-pie $(OBJ) $(LIBFT) $(PRINTF) $(MLX) -o $(NAME) $(MLX_FLAGS)
 
@@ -53,6 +56,7 @@ fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
 	make -C $(PRINTF_DIR) fclean
+	rm -rf $(MLX_DIR)build
 
 re: fclean all
 

@@ -5,7 +5,6 @@ FLAGS = -Wall -Werror -Wextra
 
 SRCS =	$(wildcard *.c)
 
-
 OBJECTS = $(SRCS:.c=.o)
 
 INCLUDES =	ft_printf.h
@@ -14,7 +13,6 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	$(LIB) $(NAME) $(OBJECTS)
-
 
 %.o: %.c INCLUDES
 	$(CC) $(FLAGS) -c $< -o $@
