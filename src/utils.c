@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:20 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/15 17:17:28 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:18:01 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,16 @@ void	disable_instance(mlx_image_t *image, int x, int y)
 		}
 		i++;
 	}
+}
+
+void	init_mlx(t_game *game)
+{
+	int	map_width;
+	int	map_height;
+
+	map_width = game->map_width * SIZE_WIN;
+	map_height = game->map_height * SIZE_WIN;
+	game->mlx = mlx_init(map_width, map_height, "so_long", false);
+	if (!game->mlx)
+		critical_error("ERROR: mlx_init failed", game);
 }

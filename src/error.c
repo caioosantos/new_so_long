@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:12:51 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/16 23:27:08 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:09:58 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ int	handle_error(const char *msg)
 
 void	critical_error(const char *msg, t_game *game)
 {
-	(void)game;
 	if (!msg)
 		msg = "ERROR, Unknown critical error\n";
+	if (game->flood.map)
+		free_flood_map(game);
 	ft_printf("%s\n", msg);
 	destroy_game(game);
 	exit(EXIT_FAILURE);

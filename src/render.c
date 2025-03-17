@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:09:20 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/14 18:21:17 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:32:59 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static void	render_player(t_game *game)
 	x = game->player.x * SIZE_WIN;
 	y = game->player.y * SIZE_WIN;
 	mlx_image_to_window(mlx, game->texture.player, x, y);
-	game->img = game->texture.player;
 }
 
 void	render_map(t_game *game)

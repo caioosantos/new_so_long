@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:02:47 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/16 23:11:53 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:41:27 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ void	init_textures(t_game *game)
 	game->texture.t_player = NULL;
 }
 
-static void	read_map(t_game *game, const char *file)
+static void	height_width(t_game *game, const char *file)
 {
 	int		fd;
-	char	*map;
 	char	*line;
 	int		len;
 
 	fd = open(file, O_RDONLY);
-	map = ft_strdup("");
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -50,13 +48,37 @@ static void	read_map(t_game *game, const char *file)
 		game->map_height++;
 		if (game->map_width < (int)ft_strlen(line))
 			game->map_width = ft_strlen(line);
-		map = ft_strjoin(map, line);
-		map = ft_strjoin(map, "\n");
+		free(line);
+	}
+	close(fd);
+}
+
+static void	read_map(t_game *game, const char *file)
+{
+	char	*map;
+	char	*line;
+	char	*tmp;
+
+	game->file.fd = open(file, O_RDONLY);
+	if (!game->file.fd)
+		critical_error("Failed to open file", game);
+	map = ft_strdup("");
+	while (1)
+	{
+		line = get_next_line(game->file.fd);
+		if (!line)
+			break ;
+		tmp = map;
+		map = ft_strjoin(tmp, line);
+		free(tmp);
+		tmp = map;
+		map = ft_strjoin(tmp, "\n");
+		free(tmp);
 		free(line);
 	}
 	game->map = ft_split(map, '\n');
 	free(map);
-	close(fd);
+	close(game->file.fd);
 }
 
 void	init_game(t_game *game, const char *path)
@@ -67,10 +89,10 @@ void	init_game(t_game *game, const char *path)
 	game->moves = 0;
 	game->player.x = 0;
 	game->player.y = 0;
-	game->img = NULL;
 	game->mlx = NULL;
 	init_images(game);
 	init_textures(game);
+	height_width(game, path);
 	read_map(game, path);
 	find_player(game);
 	validate_map(game, path);

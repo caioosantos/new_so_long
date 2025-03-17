@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:50:33 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/16 23:20:39 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:08:15 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	free_images(t_game *game)
 			mlx_delete_image(game->mlx, game->texture.collectible);
 		if (game->texture.player)
 			mlx_delete_image(game->mlx, game->texture.player);
-		init_images(game);
 	}
 }
 
@@ -60,7 +59,6 @@ void	free_textures(t_game *game)
 			mlx_delete_texture(game->texture.t_collectible);
 		if (game->texture.t_player)
 			mlx_delete_texture(game->texture.t_player);
-		init_textures(game);
 	}
 }
 
@@ -68,7 +66,7 @@ void	destroy_game(t_game *game)
 {
 	if (!game)
 		return ;
-	free_map (game);
+	free_map(game);
 	free_images(game);
 	free_textures(game);
 	if (game->mlx)

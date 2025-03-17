@@ -14,7 +14,7 @@ SRC = $(wildcard $(SRC_DIR)*.c)
 # flagscl
 CC = gcc
 C_FLAGS = -Wall -Wextra -Werror -g3 -fPIC
-MLX_FLAGS = -lX11 -lXext -lm -lXext -ldl -lglfw
+MLX_FLAGS = -ldl -lglfw -pthread -lm
 
 # objects
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:41:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/16 23:26:44 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:11:46 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,32 @@ static bool	validate_map_walls(t_game *game)
 	return (true);
 }
 
+static bool	validate_map_accessiblity(t_game *game)
+{
+	int	i;
+	int	j;
+
+	game->flood.width = game->map_width;
+	game->flood.height = game->map_height;
+	game->flood.map = (int **)ft_calloc(game->map_height, sizeof(int *));
+	i = 0;
+	while (i < game->map_height)
+	{
+		game->flood.map[i] = (int *)ft_calloc(game->map_width, sizeof(int));
+		j = 0;
+		while (j < game->map_width)
+		{
+			game->flood.map[i][j] = game->map[i][j];
+			j++;
+		}
+		i++;
+	}
+	flood_fill(game, game->player.x, game->player.y);
+	verify_flood(game);
+	free_flood_map(game);
+	return (true);
+}
+
 void	validate_map(t_game *game, const char *file)
 {
 	if (!is_valid_path(file))
@@ -88,4 +114,6 @@ void	validate_map(t_game *game, const char *file)
 		critical_error("ERROR: invalid characters in map", game);
 	if (!validate_map_walls(game))
 		critical_error("ERROR: map is not surrounded by walls", game);
+	if (!validate_map_accessiblity(game))
+		critical_error("ERROR: map is not accessible", game);
 }

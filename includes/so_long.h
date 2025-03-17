@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:42:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/16 23:27:26 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 20:02:21 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ typedef struct s_position
 	int	y;
 }	t_position;
 
+typedef struct s_flood
+{
+	int		**map;
+	int		width;
+	int		height;
+}	t_flood;
+
 typedef struct s_game
 {
 	char			**map;
@@ -66,9 +73,9 @@ typedef struct s_game
 	int				moves;
 	t_position		player;
 	t_mlx_texture	texture;
-	mlx_image_t		*img;
 	mlx_t			*mlx;
 	t_file			file;
+	t_flood			flood;
 }	t_game;
 
 // erro
@@ -104,5 +111,10 @@ void	render_map(t_game *game);
 
 // hook
 void	key_hook(mlx_key_data_t key_args, void *param);
+
+// flood
+void	flood_fill(t_game *game, int x, int y);
+void	verify_flood(t_game *game);
+void	free_flood_map(t_game *game);
 
 #endif
