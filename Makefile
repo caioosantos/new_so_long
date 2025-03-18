@@ -5,7 +5,7 @@ SRC_DIR = src/
 INCLUDE_DIR = includes/
 MLX_DIR = lib/MLX42/
 LIBFT_DIR = lib/libft/
-PRINTF_DIR = printf/
+PRINTF_DIR = lib/printf/
 OBJ_DIR = obj/
 
 # files
@@ -46,9 +46,6 @@ $(LIBFT):
 
 $(PRINTF):
 	make -C $(PRINTF_DIR)
-
-valgrind:
-	valgrind --leak-check=full --suppressions=suppression_file.supp ./$(NAME) $(MAP)
 
 clean:
 	rm -rf $(OBJ_DIR)

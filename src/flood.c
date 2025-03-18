@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:36:09 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/17 19:07:45 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:54:36 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	free_flood_map(t_game *game)
 	int	i;
 
 	if (!game || !game->flood.map)
-		return;
+		return ;
 	i = 0;
 	while (i < game->flood.height)
 	{

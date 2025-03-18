@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:42:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/17 23:39:55 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:01:19 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include "../lib/libft/libft.h"
-# include "../printf/ft_printf.h"
+# include "../lib/printf/ft_printf.h"
 
 # define SIZE_WIN 64
 # define MAP_EXTENSION ".ber"
