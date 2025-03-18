@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:42:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/17 20:02:21 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 23:39:55 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../lib/mlx_42/include/MLX42/MLX42.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>

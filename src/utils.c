@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:35:20 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/17 12:18:01 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 23:35:21 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	init_mlx(t_game *game)
 
 	map_width = game->map_width * SIZE_WIN;
 	map_height = game->map_height * SIZE_WIN;
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->mlx = mlx_init(map_width, map_height, "so_long", false);
 	if (!game->mlx)
 		critical_error("ERROR: mlx_init failed", game);

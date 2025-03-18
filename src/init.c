@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:02:47 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/03/17 14:41:27 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/03/17 22:37:05 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@ void	init_textures(t_game *game)
 
 static void	height_width(t_game *game, const char *file)
 {
-	int		fd;
 	char	*line;
 	int		len;
 
-	fd = open(file, O_RDONLY);
+	game->file.fd = open(file, O_RDONLY);
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(game->file.fd);
 		if (!line)
 			break ;
 		len = ft_strlen(line);
@@ -50,7 +49,7 @@ static void	height_width(t_game *game, const char *file)
 			game->map_width = ft_strlen(line);
 		free(line);
 	}
-	close(fd);
+	close(game->file.fd);
 }
 
 static void	read_map(t_game *game, const char *file)
